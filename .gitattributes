@@ -1,0 +1,6 @@
+# Forzar a GitHub a detectar todos los archivos HTML y Python del proyecto
+*.py linguist-detectable=true
+*.html linguist-detectable=true
+
+# Tratar el layout base como código de soporte para que no infle de más el porcentaje de HTML
+base/templates/base/base_layout.html linguist-vendor=true
