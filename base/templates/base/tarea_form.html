@@ -1,0 +1,18 @@
+{% extends 'base/base_layout.html' %}
+
+{% block title %}Formulario de Tarea - Gestor de Tareas{% endblock %}
+
+{% block content %}
+<div class="card" style="max-width: 540px; margin: 2rem auto;">
+    <a href="{% url 'tareas' %}" class="back-link">← Volver a la lista</a>
+    <div class="card-header">
+        <h1>Formulario de Tareas</h1>
+        <p>Completa los campos para guardar la tarea</p>
+    </div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Enviar">
+    </form>
+</div>
+{% endblock %}

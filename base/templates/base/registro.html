@@ -1,0 +1,21 @@
+{% extends 'base/base_layout.html' %}
+
+{% block title %}Registro - Gestor de Tareas{% endblock %}
+
+{% block content %}
+<div class="card" style="max-width: 480px; margin: 3rem auto;">
+    <a href="{% url 'tareas' %}" class="back-link">← Volver</a>
+    <div class="card-header">
+        <h1>Crear Cuenta</h1>
+        <p>Regístrate para comenzar a organizar tus tareas</p>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Registrar">
+    </form>
+    <div class="auth-footer">
+        <p>¿Ya tienes una cuenta? <a href="{% url 'login' %}">Ingresar</a></p>
+    </div>
+</div>
+{% endblock %}

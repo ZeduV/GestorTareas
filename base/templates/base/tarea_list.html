@@ -1,0 +1,52 @@
+{% extends 'base/base_layout.html' %}
+
+{% block title %}Mis Tareas - Gestor de Tareas{% endblock %}
+
+{% block navbar %}
+<nav class="navbar">
+    <a href="{% url 'tareas' %}" class="navbar-brand">
+        <span class="logo-icon">✓</span>
+        Gestor de Tareas
+    </a>
+    {% if request.user.is_authenticated %}
+    <div class="navbar-user">
+        <span class="username">{{request.user}}</span>
+        <div class="avatar">{{request.user.username.0}}</div>
+        <form method="POST" action="{% url 'logout' %}" style="margin:0;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-ghost btn-sm">Salir</button>
+        </form>
+    </div>
+    {% else %}
+    <a href="{% url 'login' %}" class="btn btn-primary btn-sm">Ingresar</a>
+    {% endif %}
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="task-list-header">
+    <h1>📋 Mis Pendientes</h1>
+    <a href="{% url 'crear-tarea' %}" class="btn btn-primary">+ Crear Nueva Tarea</a>
+</div>
+
+{% for tarea in tareas %}
+<div class="task-item {% if tarea.completo %}completed{% endif %} delay-{{ forloop.counter }}">
+    <div style="display:flex; align-items:center; flex:1; min-width:0;">
+        <span class="status-dot {% if tarea.completo %}done{% else %}pending{% endif %}"></span>
+        <span class="task-title">{{tarea.titulo}}</span>
+    </div>
+    <div class="task-actions">
+        <a href="{% url 'tarea' tarea.id %}" class="btn btn-secondary btn-sm">👁 Ver</a>
+        <a href="{% url 'editar-tarea' tarea.id %}" class="btn btn-success btn-sm">✏ Editar</a>
+        <a href="{% url 'eliminar-tarea' tarea.id %}" class="btn btn-danger btn-sm">🗑 Eliminar</a>
+    </div>
+</div>
+{% empty %}
+<div class="empty-state">
+    <div class="empty-icon">📝</div>
+    <h3>No hay elementos en esta lista</h3>
+    <p>Crea tu primera tarea para comenzar a organizarte</p>
+    <a href="{% url 'crear-tarea' %}" class="btn btn-primary" style="margin-top: 1.25rem;">+ Crear Tarea</a>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base/base_layout.html' %}
+
+{% block title %}{{tarea.titulo}} - Gestor de Tareas{% endblock %}
+
+{% block content %}
+<div class="card detail-card" style="max-width: 640px; margin: 2rem auto;">
+    <a href="{% url 'tareas' %}" class="back-link">← Volver a la lista</a>
+
+    <div class="card-header" style="text-align: left;">
+        <h1>{{tarea.titulo}}</h1>
+    </div>
+
+    <div class="detail-field">
+        <div class="detail-label">Estado</div>
+        <div class="detail-value">
+            {% if tarea.completo %}
+            <span class="status-badge done">● Completada</span>
+            {% else %}
+            <span class="status-badge pending">● Pendiente</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="detail-field">
+        <div class="detail-label">Descripción</div>
+        <div class="detail-value description">
+            {% if tarea.descripcion %}
+                {{tarea.descripcion}}
+            {% else %}
+                <span style="color: var(--text-muted); font-style: italic;">Sin descripción</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="detail-field">
+        <div class="detail-label">Fecha de creación</div>
+        <div class="detail-value">{{tarea.creado|date:"d M Y, H:i"}}</div>
+    </div>
+
+    <div class="detail-field" style="border-bottom: none;">
+        <div class="detail-label">Asignada a</div>
+        <div class="detail-value">
+            {% if tarea.usuario %}
+                {{tarea.usuario.username}}
+            {% else %}
+                <span style="color: var(--text-muted); font-style: italic;">Sin asignar</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <div style="display: flex; gap: 0.75rem; margin-top: 2rem;">
+        <a href="{% url 'editar-tarea' tarea.id %}" class="btn btn-primary" style="flex:1;">✏ Editar</a>
+        <a href="{% url 'eliminar-tarea' tarea.id %}" class="btn btn-danger" style="flex:1;">🗑 Eliminar</a>
+    </div>
+</div>
+{% endblock %}

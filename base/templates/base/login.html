@@ -1,0 +1,20 @@
+{% extends 'base/base_layout.html' %}
+
+{% block title %}Ingresar - Gestor de Tareas{% endblock %}
+
+{% block content %}
+<div class="card" style="max-width: 440px; margin: 4rem auto;">
+    <div class="card-header">
+        <h1>Bienvenido</h1>
+        <p>Ingresa a tu cuenta para gestionar tus tareas</p>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Ingresar">
+    </form>
+    <div class="auth-footer">
+        <p>¿No tienes una cuenta? <a href="{% url 'registro' %}">Registrate</a></p>
+    </div>
+</div>
+{% endblock %}

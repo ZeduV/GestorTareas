@@ -1,0 +1,24 @@
+{% extends 'base/base_layout.html' %}
+
+{% block title %}Eliminar Tarea - Gestor de Tareas{% endblock %}
+
+{% block content %}
+<div class="card" style="max-width: 480px; margin: 3rem auto;">
+    <a href="{% url 'tareas' %}" class="back-link">← Volver a la lista</a>
+    <div class="card-header">
+        <h1>Eliminar Tarea</h1>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="delete-warning">
+            <div class="warning-icon">⚠️</div>
+            <p>Vas a eliminar esta tarea:</p>
+            <p style="margin-top: 0.5rem;"><strong>"{{tarea}}"</strong></p>
+        </div>
+        <div class="delete-actions">
+            <a href="{% url 'tareas' %}" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-danger">🗑 Eliminar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
