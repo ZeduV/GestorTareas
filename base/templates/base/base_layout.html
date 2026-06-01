@@ -17,28 +17,29 @@
         }
 
         :root {
-            --bg-primary: #0f0e17;
-            --bg-secondary: #1a1932;
-            --bg-card: rgba(26, 25, 50, 0.7);
-            --bg-card-hover: rgba(36, 35, 70, 0.8);
-            --bg-input: rgba(255, 255, 255, 0.06);
-            --border-color: rgba(255, 255, 255, 0.08);
-            --border-focus: #7c5cfc;
-            --text-primary: #fffffe;
-            --text-secondary: #a7a9be;
-            --text-muted: #6b6d8a;
-            --accent-primary: #7c5cfc;
-            --accent-secondary: #ff6e96;
-            --accent-gradient: linear-gradient(135deg, #7c5cfc 0%, #c56cf0 50%, #ff6e96 100%);
-            --accent-gradient-hover: linear-gradient(135deg, #9279fc 0%, #d085f5 50%, #ff8bac 100%);
-            --success: #2ee89e;
-            --danger: #ff4757;
-            --danger-hover: #ff6b7a;
-            --warning: #ffc048;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.3);
-            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
-            --shadow-glow: 0 0 30px rgba(124, 92, 252, 0.15);
+            /* 🌊 Ocean Breeze Theme */
+            --bg-primary: #0a1628;
+            --bg-secondary: #0f2035;
+            --bg-card: rgba(15, 32, 53, 0.75);
+            --bg-card-hover: rgba(20, 50, 80, 0.85);
+            --bg-input: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(56, 189, 248, 0.1);
+            --border-focus: #22d3ee;
+            --text-primary: #f0f9ff;
+            --text-secondary: #94a3b8;
+            --text-muted: #5b7a99;
+            --accent-primary: #22d3ee;
+            --accent-secondary: #38bdf8;
+            --accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #22d3ee 45%, #2dd4bf 100%);
+            --accent-gradient-hover: linear-gradient(135deg, #38bdf8 0%, #67e8f9 45%, #5eead4 100%);
+            --success: #34d399;
+            --danger: #f87171;
+            --danger-hover: #fca5a5;
+            --warning: #fbbf24;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+            --shadow-md: 0 8px 32px rgba(0, 10, 30, 0.4);
+            --shadow-lg: 0 16px 48px rgba(0, 10, 30, 0.5);
+            --shadow-glow: 0 0 30px rgba(34, 211, 238, 0.12);
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 16px;
@@ -55,7 +56,7 @@
             overflow-x: hidden;
         }
 
-        /* ===== Animated Background ===== */
+        /* ===== Animated Ocean Background ===== */
         body::before {
             content: '';
             position: fixed;
@@ -64,17 +65,32 @@
             width: 200%;
             height: 200%;
             background: 
-                radial-gradient(circle at 20% 50%, rgba(124, 92, 252, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(197, 108, 240, 0.06) 0%, transparent 50%),
-                radial-gradient(circle at 60% 80%, rgba(255, 110, 150, 0.05) 0%, transparent 50%);
-            animation: bgFloat 20s ease-in-out infinite;
+                radial-gradient(ellipse at 15% 60%, rgba(14, 165, 233, 0.1) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 25%, rgba(34, 211, 238, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 90%, rgba(45, 212, 191, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 50%, rgba(56, 189, 248, 0.04) 0%, transparent 40%);
+            animation: oceanFloat 25s ease-in-out infinite;
             z-index: -1;
         }
 
-        @keyframes bgFloat {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(2%, -2%) rotate(1deg); }
-            66% { transform: translate(-1%, 1%) rotate(-1deg); }
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(180deg, transparent 0%, rgba(10, 22, 40, 0.3) 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes oceanFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            25% { transform: translate(1.5%, -1%) rotate(0.5deg) scale(1.01); }
+            50% { transform: translate(-0.5%, 1.5%) rotate(-0.5deg) scale(1); }
+            75% { transform: translate(-1%, -0.5%) rotate(0.3deg) scale(1.01); }
         }
 
         /* ===== Layout ===== */
@@ -92,12 +108,13 @@
             justify-content: space-between;
             padding: 1rem 1.5rem;
             background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(24px) saturate(1.4);
+            -webkit-backdrop-filter: blur(24px) saturate(1.4);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-lg);
             margin-bottom: 2rem;
             animation: slideDown 0.5s ease-out;
+            box-shadow: 0 4px 20px rgba(0, 10, 30, 0.3);
         }
 
         @keyframes slideDown {
@@ -124,7 +141,7 @@
             align-items: center;
             justify-content: center;
             font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(124, 92, 252, 0.3);
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.35);
         }
 
         .navbar-user {
@@ -150,13 +167,14 @@
             font-weight: 700;
             font-size: 0.85rem;
             text-transform: uppercase;
+            box-shadow: 0 2px 10px rgba(14, 165, 233, 0.3);
         }
 
         /* ===== Card Component ===== */
         .card {
             background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(24px) saturate(1.4);
+            -webkit-backdrop-filter: blur(24px) saturate(1.4);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-xl);
             padding: 2.5rem;
@@ -211,12 +229,12 @@
         .btn-primary {
             background: var(--accent-gradient);
             color: white;
-            box-shadow: 0 4px 15px rgba(124, 92, 252, 0.3);
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
         }
 
         .btn-primary:hover {
             background: var(--accent-gradient-hover);
-            box-shadow: 0 6px 25px rgba(124, 92, 252, 0.45);
+            box-shadow: 0 6px 25px rgba(14, 165, 233, 0.45);
             transform: translateY(-2px);
         }
 
@@ -227,28 +245,29 @@
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(56, 189, 248, 0.08);
             color: var(--text-primary);
+            border-color: rgba(56, 189, 248, 0.25);
             transform: translateY(-2px);
         }
 
         .btn-danger {
-            background: rgba(255, 71, 87, 0.15);
+            background: rgba(248, 113, 113, 0.12);
             color: var(--danger);
-            border: 1px solid rgba(255, 71, 87, 0.2);
+            border: 1px solid rgba(248, 113, 113, 0.2);
         }
 
         .btn-danger:hover {
             background: var(--danger);
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 71, 87, 0.3);
+            box-shadow: 0 6px 20px rgba(248, 113, 113, 0.3);
         }
 
         .btn-success {
-            background: rgba(46, 232, 158, 0.15);
+            background: rgba(52, 211, 153, 0.12);
             color: var(--success);
-            border: 1px solid rgba(46, 232, 158, 0.2);
+            border: 1px solid rgba(52, 211, 153, 0.2);
         }
 
         .btn-success:hover {
@@ -264,8 +283,8 @@
         }
 
         .btn-ghost:hover {
-            color: var(--text-primary);
-            background: var(--bg-input);
+            color: var(--accent-primary);
+            background: rgba(34, 211, 238, 0.06);
         }
 
         .btn-sm {
@@ -315,8 +334,8 @@
         .form-group textarea:focus,
         .form-group select:focus {
             border-color: var(--border-focus);
-            box-shadow: 0 0 0 3px rgba(124, 92, 252, 0.15);
-            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.12);
+            background: rgba(56, 189, 248, 0.06);
         }
 
         .form-group textarea {
@@ -326,7 +345,7 @@
 
         .form-group select {
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23a7a9be' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 1rem center;
             padding-right: 2.5rem;
@@ -370,8 +389,8 @@
         form p textarea:focus,
         form p select:focus {
             border-color: var(--border-focus);
-            box-shadow: 0 0 0 3px rgba(124, 92, 252, 0.15);
-            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.12);
+            background: rgba(56, 189, 248, 0.06);
         }
 
         form p input[type="checkbox"] {
@@ -385,7 +404,7 @@
 
         form p select {
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23a7a9be' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 1rem center;
             padding-right: 2.5rem;
@@ -406,12 +425,12 @@
             transition: var(--transition);
             background: var(--accent-gradient);
             color: white;
-            box-shadow: 0 4px 15px rgba(124, 92, 252, 0.3);
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
             margin-top: 0.5rem;
         }
 
         form input[type="submit"]:hover {
-            box-shadow: 0 6px 25px rgba(124, 92, 252, 0.45);
+            box-shadow: 0 6px 25px rgba(14, 165, 233, 0.45);
             transform: translateY(-2px);
         }
 
@@ -471,6 +490,7 @@
             background: var(--bg-input);
             padding: 0.4rem 0.8rem;
             border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
         }
 
         .task-item {
@@ -488,7 +508,7 @@
 
         .task-item:hover {
             background: var(--bg-card-hover);
-            border-color: rgba(124, 92, 252, 0.2);
+            border-color: rgba(34, 211, 238, 0.2);
             box-shadow: var(--shadow-glow);
             transform: translateX(4px);
         }
@@ -521,12 +541,12 @@
 
         .status-dot.pending {
             background: var(--warning);
-            box-shadow: 0 0 8px rgba(255, 192, 72, 0.4);
+            box-shadow: 0 0 8px rgba(251, 191, 36, 0.4);
         }
 
         .status-dot.done {
             background: var(--success);
-            box-shadow: 0 0 8px rgba(46, 232, 158, 0.4);
+            box-shadow: 0 0 8px rgba(52, 211, 153, 0.4);
         }
 
         .empty-state {
@@ -601,12 +621,12 @@
         }
 
         .status-badge.pending {
-            background: rgba(255, 192, 72, 0.12);
+            background: rgba(251, 191, 36, 0.1);
             color: var(--warning);
         }
 
         .status-badge.done {
-            background: rgba(46, 232, 158, 0.12);
+            background: rgba(52, 211, 153, 0.1);
             color: var(--success);
         }
 
@@ -614,8 +634,8 @@
         .delete-warning {
             text-align: center;
             padding: 1.5rem;
-            background: rgba(255, 71, 87, 0.06);
-            border: 1px solid rgba(255, 71, 87, 0.15);
+            background: rgba(248, 113, 113, 0.06);
+            border: 1px solid rgba(248, 113, 113, 0.15);
             border-radius: var(--radius-md);
             margin-bottom: 1.5rem;
         }
@@ -652,7 +672,7 @@
         }
 
         a:hover {
-            color: #9e85fd;
+            color: #67e8f9;
         }
 
         .auth-footer {
@@ -681,7 +701,7 @@
         }
 
         .back-link:hover {
-            color: var(--text-primary);
+            color: var(--accent-primary);
             transform: translateX(-4px);
         }
 
